@@ -16,6 +16,7 @@
   "type": "module",
   "description": "",
   "dependencies": {
+    "jsdoc-api": "^9.3.1"
   },
   "devDependencies": {
     "c8": "^10.1.2",
