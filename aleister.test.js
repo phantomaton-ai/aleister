@@ -8,7 +8,7 @@ import aleister from './aleister.js';
 class Mathematics {
   /**
    * Adds two numbers together.
-   * 
+   *
    * @param {number} a - The first number to add.
    * @param {number} b - The second number to add.
    * @returns {number} The sum of the two numbers.
@@ -31,9 +31,28 @@ class Mathematics {
   }
 }
 
+/**
+ * Logger interface.
+ */
+class Logger {
+  /**
+   * Logs warnings.
+   * 
+   * @param {string} message - The message to log.
+   * @body message
+   * @example logger.warn("Malformed something-something.")
+   */
+  warn(message) {
+    return `WARNED: ${message}`;
+  }
+}
+
+
 describe('aleister', () => {
   it('should generate Gallows commands from JSDoc', () => {
     const {commands} = aleister(Mathematics)();
+
+    expect(commands.length).to.equal(2);
 
     expect(commands[0].name).to.equal('add');
     expect(commands[0].description).to.equal('Adds two numbers together.');
@@ -48,5 +67,20 @@ describe('aleister', () => {
     expect(commands[1].validate({ a: 648, b: 322 })).to.equal(true);
     expect(commands[1].validate({ b: 322 })).to.equal(false);
     expect(commands[1].execute({ a: 648, b: 322 })).to.equal(326);
+  });
+
+  it('should handle bodies when present', () => {
+    const {commands} = aleister(Logger)();
+
+    expect(commands.length).to.equal(1);
+
+    expect(commands[0].name).to.equal('warn');
+    expect(commands[0].description).to.equal('Logs warnings.');
+    expect(commands[0].example).to.deep.equal(
+      { attributes: {}, body: 'Malformed something-something.' }
+    );
+    expect(commands[0].validate({ a: 648, b: 322 })).to.equal(false);
+    expect(commands[0].validate({}, 'foo')).to.equal(true);
+    expect(commands[0].execute({}, 'test')).to.equal('WARNED: test');
   });
 });

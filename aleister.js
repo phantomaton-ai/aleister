@@ -32,9 +32,13 @@ export default function aleister(Class) {
     const parameters = tags
       .filter(({ title }) => title === 'param')
       .map(({ name }) => name);
-    const bodex = parameters.findIndex(({ name }) => name === 'body');
+    const bodname = tags.find(({ title }) => title === 'body')?.description;
+    const bodex = bodname ?
+      parameters.findIndex(name => name === bodname) : -1;
     const code = tags.find(({ title }) => title === 'example').description;
-    const call = find('ExpressionStatement', acorn.parse(code)).expression;
+    const call = find(
+      'ExpressionStatement', acorn.parse(code, {ecmaVersion: 2022})
+    ).expression;
     const example = { attributes: {} };
     
     call.arguments.forEach(({ value }, index) => {
@@ -61,7 +65,7 @@ export default function aleister(Class) {
         ),
         validate: (attributes, body) => parameters.every(
           (parameter, index) =>
-            index === body ? body : Object.hasOwn(attributes, parameter)
+            index === bodex ? body : Object.hasOwn(attributes, parameter)
         )
       }))
     };
