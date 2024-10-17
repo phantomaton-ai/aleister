@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "aleister.js",
   "scripts": {
-    "cov": "c8 -x '*.test.*' -r html --check-coverage --lines 100 npm test",
-    "test": "mocha --ignore 'node_modules/**/*' **/*.test.js"
+    "all": "lovecraft -a",
+    "cov": "lovecraft -c",
+    "lint": "lovecraft -l",
+    "test": "lovecraft"
   },
   "repository": {
     "type": "git",
@@ -16,11 +18,9 @@
   "type": "module",
   "description": "",
   "dependencies": {
-    "acorn": "^8.13.0",
+    "acorn": "^8.13.0"
   },
   "devDependencies": {
-    "c8": "^10.1.2",
-    "chai": "^5.1.1",
-    "mocha": "^10.7.3"
+    "lovecraft": "^1.0.1"
   }
 }
