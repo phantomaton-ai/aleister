@@ -28,23 +28,22 @@ export default function aleister(Class) {
   }).filter(({ method }) => method).map(({ method, value }) => {
     const name = method.key.name;
     const { tags, description } = doctrine.parse(value, { unwrap: true });
+
     const parameters = tags
       .filter(({ title }) => title === 'param')
       .map(({ name }) => name);
     const body = parameters.findIndex(({ name }) => name === 'body');
     const code = tags.find(({ title }) => title === 'example').description;
     const call = find('ExpressionStatement', acorn.parse(code)).expression;
-    const attributes = {};
+    const example = { attributes: {} };
     
-    return { name, description, attributes };
+    call.arguments.forEach(({ value }, index) => {
+      if (index === body) example.body = value;
+      else example.attributes[parameters[index]] = value;
+    });
+    const command = { name, description, example };
+    if (body >= 0) command.body = true;
+    return command;
   });
-  console.log(
-    JSON.stringify(parsed, null, 2),
-    comments,
-    JSON.stringify(commands, null, 2),
-    root,
-    methods,
-    commands
-  );
   return { commands };
 }
