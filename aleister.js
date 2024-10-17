@@ -27,9 +27,12 @@ export default function aleister(Class) {
     return { method, value };
   }).filter(({ method }) => method).map(({ method, value }) => {
     const name = method.key.name;
-    const documentation = doctrine.parse(value, { unwrap: true });
-    const description = documentation.description;
-    return { name, description };
+    const { tags, description } = doctrine.parse(value, { unwrap: true });
+    const parameters = tags
+      .filter(({ title }) => title === 'param')
+      .map(({ name }) => name);
+    const body = parameters.findIndex(({ name }) => name === 'body');
+    return { name, description, tags };
   });
   console.log(
     JSON.stringify(parsed, null, 2),
