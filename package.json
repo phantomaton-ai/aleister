@@ -21,6 +21,6 @@
     "acorn": "^8.13.0"
   },
   "devDependencies": {
-    "lovecraft": "^1.0.1"
+    "lovecraft": "^1.0.2"
   }
 }

@@ -1,7 +1,6 @@
-import acorn from 'acorn';
+import * as acorn from 'acorn';
 
 
 export default function aleister(Class) {
-  const parser = createParser();
    
 }
