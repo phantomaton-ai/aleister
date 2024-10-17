@@ -33,7 +33,7 @@ class Mathematics {
 
 describe('aleister', () => {
   it('should generate Gallows commands from JSDoc', () => {
-    const {commands} = aleister(Mathematics);
+    const {commands} = aleister(Mathematics)();
 
     expect(commands[0].name).to.equal('add');
     expect(commands[0].description).to.equal('Adds two numbers together.');

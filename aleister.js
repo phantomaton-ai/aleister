@@ -32,18 +32,34 @@ export default function aleister(Class) {
     const parameters = tags
       .filter(({ title }) => title === 'param')
       .map(({ name }) => name);
-    const body = parameters.findIndex(({ name }) => name === 'body');
+    const bodex = parameters.findIndex(({ name }) => name === 'body');
     const code = tags.find(({ title }) => title === 'example').description;
     const call = find('ExpressionStatement', acorn.parse(code)).expression;
     const example = { attributes: {} };
     
     call.arguments.forEach(({ value }, index) => {
-      if (index === body) example.body = value;
+      if (index === bodex) example.body = value;
       else example.attributes[parameters[index]] = value;
     });
     const command = { name, description, example };
-    if (body >= 0) command.body = true;
+    if (bodex >= 0) command.body = true;
     return command;
   });
-  return { commands };
+  return options => {
+    const instance = new Class(options);
+    return {
+      commands: commands.map(command => ({
+        ...command,
+        execute: (attributes, body) => instance[command.name](
+          ...parameters.map((parameter, index) => 
+            index === bodex ? body : attributes[parameter]
+          )
+        ),
+        validate: (attributes, body) => parameters.every(
+          (parameter, index) =>
+            index === body ? body : Object.hasOwn(attributes, parameter)
+        )
+      }))
+    };
+  };
 }
