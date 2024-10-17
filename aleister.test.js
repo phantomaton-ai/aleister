@@ -38,9 +38,15 @@ describe('aleister', () => {
     expect(commands[0].name).to.equal('add');
     expect(commands[0].description).to.equal('Adds two numbers together.');
     expect(commands[0].example).to.deep.equal({ attributes: { a: 2, b: 3 } });
+    expect(commands[0].validate({ a: 648, b: 322 })).to.equal(true);
+    expect(commands[0].validate({ b: 322 })).to.equal(false);
+    expect(commands[0].execute({ a: 648, b: 322 })).to.equal(970);
 
     expect(commands[1].name).to.equal('subtract');
     expect(commands[1].description).to.equal('Subtracts one number from another.');
     expect(commands[1].example).to.deep.equal({ attributes: { a: 5, b: 3 } });
+    expect(commands[1].validate({ a: 648, b: 322 })).to.equal(true);
+    expect(commands[1].validate({ b: 322 })).to.equal(false);
+    expect(commands[1].execute({ a: 648, b: 322 })).to.equal(326);
   });
 });

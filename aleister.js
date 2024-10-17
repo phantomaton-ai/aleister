@@ -41,16 +41,20 @@ export default function aleister(Class) {
       if (index === bodex) example.body = value;
       else example.attributes[parameters[index]] = value;
     });
-    const command = { name, description, example };
+    const command = { name, description, example, parameters, bodex };
     if (bodex >= 0) command.body = true;
     return command;
   });
   return options => {
     const instance = new Class(options);
     return {
-      commands: commands.map(command => ({
-        ...command,
-        execute: (attributes, body) => instance[command.name](
+      commands: commands.map((
+        { name, description, example, parameters, bodex }
+      ) => ({
+        name,
+        description,
+        example,
+        execute: (attributes, body) => instance[name](
           ...parameters.map((parameter, index) => 
             index === bodex ? body : attributes[parameter]
           )
