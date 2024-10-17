@@ -12,10 +12,7 @@ class Mathematics {
    * @param {number} a - The first number to add.
    * @param {number} b - The second number to add.
    * @returns {number} The sum of the two numbers.
-   * @example
-   * ```
-   * mathematics.add(2, 3) // Returns 5
-   * ```
+   * @example mathematics.add(2, 3) // 5
    */
   add(a, b) {
     return a + b;
@@ -27,10 +24,7 @@ class Mathematics {
    * @param {number} a - The number to subtract from.
    * @param {number} b - The number to subtract.
    * @returns {number} The difference between the two numbers.
-   * @example
-   * ```
-   * mathematics.subtract(5, 3) // Returns 2
-   * ```
+   * @example mathematics.subtract(5, 3) // 2
    */
   subtract(a, b) {
     return a - b;

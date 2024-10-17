@@ -32,7 +32,11 @@ export default function aleister(Class) {
       .filter(({ title }) => title === 'param')
       .map(({ name }) => name);
     const body = parameters.findIndex(({ name }) => name === 'body');
-    return { name, description, tags };
+    const code = tags.find(({ title }) => title === 'example').description;
+    const call = find('ExpressionStatement', acorn.parse(code)).expression;
+    const attributes = {};
+    
+    return { name, description, attributes };
   });
   console.log(
     JSON.stringify(parsed, null, 2),
