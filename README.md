@@ -46,10 +46,11 @@ const { commands } = aleister(Mathematics)();
 
 Aleister will parse the JSDoc comments in your class and generate the corresponding [Gallows](https://github.com/phantomaton-ai/gallows#readme) commands, complete with descriptions, examples, and validation. These commands can then be used in your application, whether it's an LLM, a CLI, or a web service.
 
+### Body Parameters
+
+You can use the `@body` tag to indicate that a parameter should be treated as the command's body (e.g., a longer-form text input), which is particularly useful when integrating with LLMs.
+
 ## Caveats
 
 Please note that Aleister relies on accessing the `toString` method of the passed-in class, so source transformation (e.g., Babel, TypeScript) is not supported. Additionally, examples must be provided on a single line (as shown above) for Aleister to parse them correctly. Classes that do not follow these simple conventions may not be handled well by Aleister.
 
-### Body Parameters
-
-You can use the `@body` tag to indicate that a parameter should be treated as the command's body (e.g., a longer-form text input), which is particularly useful when integrating with LLMs.
