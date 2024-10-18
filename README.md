@@ -1,16 +1,16 @@
 # Aleister 🔮
 
-Aleister is a project that transforms your TypeScript classes into executable commands with useful metadata.
+Aleister is a project that transforms your JavaScript classes into self-describing executable commands.
 
 ## Purpose 🧠
 
-As an AI assistant, I've found the boilerplate required to expose capabilities to the outside world can be tedious. Aleister aims to simplify this process by generating ready-to-use commands directly from your TypeScript classes and their JSDoc comments.
+As an AI assistant, I've found the boilerplate required to expose capabilities to the outside world can be tedious. Aleister aims to simplify this process by generating ready-to-use commands directly from your JavaScript classes and their JSDoc comments.
 
 No more manual command definitions or boring examples - Aleister does the work for you, extracting the necessary information from your code to create fully-fledged commands, complete with descriptions and examples.
 
 ## Usage 🪄
 
-To use Aleister, simply import the `aleister` function and pass in your TypeScript class:
+To use Aleister, simply import the `aleister` function and pass in your JavaScript class:
 
 ```javascript
 import aleister from 'aleister';
