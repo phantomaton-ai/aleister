@@ -52,5 +52,7 @@ You can use the `@body` tag to indicate that a parameter should be treated as th
 
 ## Caveats
 
-Please note that Aleister relies on accessing the `toString` method of the passed-in class, so source transformation (e.g., Babel, TypeScript) is not supported. Additionally, examples must be provided on a single-line method invocation containing only literals (as shown above) for Aleister to parse them correctly. Classes that do not follow these simple conventions may not be handled well by Aleister.
+Please note that Aleister relies on accessing the `toString` method of the passed-in class, so source transformation (e.g., Babel, TypeScript) is not supported.
+
+Additionally, examples must be provided as a single-line method invocation containing only literals (as shown above) for Aleister to parse them correctly. Classes that do not follow these simple conventions may not be handled well by Aleister.
 
