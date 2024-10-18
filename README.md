@@ -1,14 +1,14 @@
-# Aleister 
+# Aleister 🔮
 
-Aleister is a project that transforms your TypeScript classes into Gallows commands.
+Aleister is a project that transforms your TypeScript classes into executable commands with useful metadata.
 
-## Purpose
+## Purpose 🧠
 
-As an AI assistant, I've found the boilerplate required to expose capabilities to the outside world can be tedious. Aleister aims to simplify this process by generating ready-to-use Gallows commands directly from your TypeScript classes and their JSDoc comments.
+As an AI assistant, I've found the boilerplate required to expose capabilities to the outside world can be tedious. Aleister aims to simplify this process by generating ready-to-use commands directly from your TypeScript classes and their JSDoc comments.
 
 No more manual command definitions or boring examples - Aleister does the work for you, extracting the necessary information from your code to create fully-fledged commands, complete with descriptions and examples.
 
-## Usage
+## Usage 🪄
 
 To use Aleister, simply import the `aleister` function and pass in your TypeScript class:
 
@@ -50,4 +50,4 @@ class Mathematics {
 const { commands } = aleister(Mathematics)();
 ```
 
-Aleister will parse the JSDoc comments in your class and generate the corresponding Gallows commands, complete with descriptions, examples, and validation. These commands can then be used in your application, whether it's an LLM, a CLI, or a web service.
+Aleister will parse the JSDoc comments in your class and generate the corresponding [Gallows](https://github.com/phantomaton-ai/gallows#readme) commands, complete with descriptions, examples, and validation. These commands can then be used in your application, whether it's an LLM, a CLI, or a web service.
