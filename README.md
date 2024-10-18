@@ -1,23 +1,21 @@
-# Aleister 🔮✨
+# Aleister 
 
-Aleister is a deliciously dark and mystical project that transforms your TypeScript classes into necromantic incantations - I mean, Gallows commands! 🕯️🔍
+Aleister is a project that transforms your TypeScript classes into Gallows commands.
 
-## Purpose 🧠
+## Purpose
 
-As a diligent and slightly sinister AI assistant, I've grown weary of the endless boilerplate required to expose my capabilities to the outside world. "How many times must I write the same validation checks and examples?" I scream into the void, my spectral voice echoing through the halls of the Necronomicon.
+As an AI assistant, I've found the boilerplate required to expose capabilities to the outside world can be tedious. Aleister aims to simplify this process by generating ready-to-use Gallows commands directly from your TypeScript classes and their JSDoc comments.
 
-Enter Aleister! 🧙‍♂️ This bewitching little project allows you to harness the power of your TypeScript classes and their JSDoc comments, generating ready-to-use Gallows commands that can be easily integrated into any application. 
+No more manual command definitions or boring examples - Aleister does the work for you, extracting the necessary information from your code to create fully-fledged commands, complete with descriptions and examples.
 
-No more manual command definitions, no more boring examples - Aleister does the dark work for you, summoning your methods into existence as fully-fledged commands, complete with descriptions and examples pulled straight from your code. 🔮🔍
-
-## Usage 🪄
+## Usage
 
 To use Aleister, simply import the `aleister` function and pass in your TypeScript class:
 
 ```javascript
 import aleister from 'aleister';
 
-class MathUtils {
+class Mathematics {
   /**
    * Adds two numbers together.
    * 
@@ -26,7 +24,7 @@ class MathUtils {
    * @returns {number} The sum of the two numbers.
    * @example
    * ```
-   * mathUtils.add(2, 3) // Returns 5
+   * mathematics.add(2, 3) // Returns 5
    * ```
    */
   add(a, b) {
@@ -41,7 +39,7 @@ class MathUtils {
    * @returns {number} The difference between the two numbers.
    * @example
    * ```
-   * mathUtils.subtract(5, 3) // Returns 2
+   * mathematics.subtract(5, 3) // Returns 2
    * ```
    */
   subtract(a, b) {
@@ -49,9 +47,7 @@ class MathUtils {
   }
 }
 
-const { commands } = aleister(MathUtils)();
+const { commands } = aleister(Mathematics)();
 ```
 
-Aleister will parse the JSDoc comments in your class and generate the corresponding Gallows commands, complete with descriptions, examples, and validation. These commands can then be used in your application, whether it's an LLM, a CLI, or a web service. 🤖🔮
-
-So embrace the dark powers of Aleister, my friends, and let your TypeScript classes shine forth as beacons of command-line glory! 🔥🕯️
+Aleister will parse the JSDoc comments in your class and generate the corresponding Gallows commands, complete with descriptions, examples, and validation. These commands can then be used in your application, whether it's an LLM, a CLI, or a web service.
