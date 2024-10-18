@@ -14,33 +14,32 @@ function find(type, tree) {
   if (tree.body) return find(type, tree.body);
 }
 
+const has = (property, value) => object => object[property] === value;
+
 export default function aleister(Class) {
   const comments = [];
   const options = {ecmaVersion: 2022, sourceType: 'module', onComment: comments};
   const parsed = acorn.parse(Class.toString(), options);
   const root = find('ClassBody', parsed);
-  const methods = root.body.filter(({ type }) => type === 'MethodDefinition');
-  const commands = comments.filter(
-    ({ type }) => type === 'Block'
-  ).map(({ value, start, end }) => {
+  const methods = root.body.filter(has('type', 'MethodDefinition'));
+  const commands = comments.filter(has('type', 'Block')).map((
+    { value, start, end }
+  ) => {
     const method = methods.find(m => m.start > end);
     return { method, value };
   }).filter(({ method }) => method).map(({ method, value }) => {
     const name = method.key.name;
     const { tags, description } = doctrine.parse(value, { unwrap: true });
 
-    const parameters = tags
-      .filter(({ title }) => title === 'param')
-      .map(({ name }) => name);
-    const bodname = tags.find(({ title }) => title === 'body')?.description;
+    const parameters =
+      tags.filter(has('title', 'param')).map(({ name }) => name);
+    const bodname = tags.find(has('title', 'body'))?.description;
     const bodex = bodname ?
       parameters.findIndex(name => name === bodname) : -1;
-    const code = tags.find(({ title }) => title === 'example').description;
-    const call = find(
-      'ExpressionStatement', acorn.parse(code, {ecmaVersion: 2022})
-    ).expression;
+    const code = tags.find(has('title', 'example')).description;
+    const program = acorn.parse(code, {ecmaVersion: 2022});
+    const call = find('ExpressionStatement', program).expression;
     const example = { attributes: {} };
-    
     call.arguments.forEach(({ value }, index) => {
       if (index === bodex) example.body = value;
       else example.attributes[parameters[index]] = value;
