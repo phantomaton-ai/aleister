@@ -83,4 +83,11 @@ describe('aleister', () => {
     expect(commands[0].validate({}, 'foo')).to.equal(true);
     expect(commands[0].execute({}, 'test')).to.equal('WARNED: test');
   });
+
+  it('exposes underlying instances', () => {
+    const {instance} = aleister(Mathematics)();
+
+    expect(instance.add(1, 2)).to.equal(3);
+    expect(instance.subtract(5, 3)).to.equal(2);
+  });
 });

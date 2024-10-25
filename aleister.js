@@ -66,7 +66,8 @@ export default function aleister(Class) {
           (parameter, index) =>
             index === bodex ? body : Object.hasOwn(attributes, parameter)
         )
-      }))
+      })),
+      instance
     };
   };
 }
